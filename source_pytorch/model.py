@@ -28,8 +28,8 @@ class BinaryClassifier(nn.Module):
 
         # define any initial layers, here
         self.fc1 = nn.Linear(input_features, hidden_dim)
-        self.fc2 = nn.Linear(hidden_dim, 64)
-        self.fc3 = nn.Linear(64, output_dim)
+        self.fc2 = nn.Linear(hidden_dim, 32)
+        self.fc3 = nn.Linear(32, output_dim)
         
         self.drop = nn.Dropout(0.3)
         
