@@ -27,6 +27,13 @@ class BinaryClassifier(nn.Module):
         super(BinaryClassifier, self).__init__()
 
         # define any initial layers, here
+        self.fc1 = nn.Linear(input_features, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, 64)
+        self.fc3 = nn.Linear(64, output_dim)
+        
+        self.drop = nn.Dropout(0.3)
+        
+        self.sig = nn.Sigmoid()
         
 
     
@@ -38,7 +45,11 @@ class BinaryClassifier(nn.Module):
         :return: A single, sigmoid-activated value as output
         """
         
-        # define the feedforward behavior
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = F.relu(self.drop(x))
+        x = self.fc3(x)
+        x = self.sig(x)
         
         return x
     
